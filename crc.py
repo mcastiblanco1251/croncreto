@@ -194,9 +194,7 @@ if authentication_status:
 
             input_df = user_input_features()
             cr = df.drop(columns=['Fecha/ID','Resistencia_3500_PSI', 'Resistencia_2500_PSI', 'Resistencia_2000_PSI', 'Resistencia_1500_PSI' ], axis=1)
-            cr
             df1 = pd.concat([input_df,cr],axis=0)
-            df1
         #df[0:1]
         # Encoding of ordinal features
         # https://www.kaggle.com/pratik1120/penguin-dataset-eda-classification-and-clustering
