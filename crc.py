@@ -359,7 +359,7 @@ if authentication_status:
                 st.write(f'**Gráfica {p_pred}**')
                 df1[p_pred]=df1[prop][len(df1)-100:len(df1)]*0.94
                 df2=df1[[prop,p_pred]][len(df1)-100:len(df1)]
-                df2=df2.append({prop:'',p_pred:prediction},ignore_index=True)
+                df2=df2._append({prop:'',p_pred:prediction},ignore_index=True)
 
                 plt.figure(figsize=(12,10))
                 plt.title(f'Propiedad {prop}')
@@ -378,7 +378,7 @@ if authentication_status:
                     st.write(f'**Gráfica {prop} y {p_pred}**')
                     df1[p_pred]=df1[prop][len(df1)-100:len(df1)]*0.94
                     df2=df1[[prop,p_pred]][len(df1)-100:len(df1)]
-                    df2=df2.append({prop:prediction*0.84,p_pred:prediction},ignore_index=True)
+                    df2=df2._append({prop:prediction*0.84,p_pred:prediction},ignore_index=True)
                     plt.figure(figsize=(12,10))
                     plt.title(f'Propiedad {prop}')
                     plt.plot(df2[prop][:len(df2[prop])])
