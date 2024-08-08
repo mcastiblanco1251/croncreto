@@ -17,7 +17,7 @@ from sklearn.metrics import r2_score
 #im = Image.open('C:/Users/Mcastiblanco/Documents/AGPC/DataScience2020/Streamlit/Arroz/apps/arroz.png')
 im2 = Image.open('predictor2.png')
 st.set_page_config(page_title='Pred_App', layout="wide", page_icon=im2)
-st.set_option('deprecation.showPyplotGlobalUse', False)
+#st.set_option('deprecation.showPyplotGlobalUse', False)
 hide_menu_style = """
         <style>
         #MainMenu {visibility: hidden;}
@@ -359,16 +359,16 @@ if authentication_status:
                 st.write(f'**Gráfica {p_pred}**')
                 df1[p_pred]=df1[prop][len(df1)-100:len(df1)]*0.94
                 df2=df1[[prop,p_pred]][len(df1)-100:len(df1)]
-                df2=df2._append({prop:'',p_pred:prediction},ignore_index=True)
+                df2=df2.append({prop:'',p_pred:prediction},ignore_index=True)
 
-                plt.figure(figsize=(12,10))
+                fig=plt.figure(figsize=(12,10))
                 plt.title(f'Propiedad {prop}')
                 plt.plot(df2[prop][:len(df2[prop])-1])
                 plt.plot(df2[p_pred][len(df2)-20:len(df2)])
                 plt.xlabel('No.Muestra',fontsize=18)
                 plt.ylabel(f'Propiedad {prop}(Unid)',fontsize=18)
                 plt.legend([prop+'_Real', p_pred+'_Predición'], loc='upper right')
-                st.pyplot(plt.show())
+                st.pyplot(fig)
                 act=st.button('Actualizar')
             #     # image = Image.open('r2.jpg')
             #     # st.image(image, use_column_width=True)
@@ -378,15 +378,15 @@ if authentication_status:
                     st.write(f'**Gráfica {prop} y {p_pred}**')
                     df1[p_pred]=df1[prop][len(df1)-100:len(df1)]*0.94
                     df2=df1[[prop,p_pred]][len(df1)-100:len(df1)]
-                    df2=df2._append({prop:prediction*0.84,p_pred:prediction},ignore_index=True)
-                    plt.figure(figsize=(12,10))
+                    df2=df2.append({prop:prediction*0.84,p_pred:prediction},ignore_index=True)
+                    fig=plt.figure(figsize=(12,10))
                     plt.title(f'Propiedad {prop}')
                     plt.plot(df2[prop][:len(df2[prop])])
                     plt.plot(df2[p_pred][len(df2)-20:len(df2)])
                     plt.xlabel('No.Muestra',fontsize=18)
                     plt.ylabel(f'Propiedad {prop}(Unid)',fontsize=18)
                     plt.legend([prop+'_Real', p_pred+'_Predición'], loc='upper right')
-                    st.pyplot(plt.show())
+                    st.pyplot(fig)
 
                     st.write('**Tabla Resultados vs Real**')
                     vr=prediction*0.84
