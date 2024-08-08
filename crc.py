@@ -359,8 +359,8 @@ if authentication_status:
                 st.write(f'**Gráfica {p_pred}**')
                 df1[p_pred]=df1[prop][len(df1)-100:len(df1)]*0.94
                 df2=df1[[prop,p_pred]][len(df1)-100:len(df1)]
-                df2=pd.concat([df2,{prop:'',p_pred:prediction}],ignore_index=True)
-                
+                df2=pd.concat([df2,pd.DataFrame({prop:'',p_pred:prediction})],ignore_index=True)
+                #df2=df2._append({prop:'',p_pred:prediction},ignore_index=True)
 
                 fig=plt.figure(figsize=(12,10))
                 plt.title(f'Propiedad {prop}')
